@@ -412,9 +412,11 @@ function renderPaymentInstructions() {
 
   if (selectedPay === 'qris') {
     html += `<div style="text-align:center;padding:16px;">
-      <div style="font-size:64px;margin-bottom:12px;">📱</div>
-      <div style="font-weight:600;margin-bottom:6px;">Scan QRIS</div>
-      <div style="font-size:13px;color:var(--muted);">Buka GoPay / OVO / Dana / m-Banking.</div>
+      <img src="assets/images/payments/qr-qris.png" alt="QRIS"
+           style="max-width:220px;border-radius:12px;margin-bottom:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);"
+           onerror="this.style.display='none'">
+      <div style="font-weight:600;margin-bottom:4px;">Scan QRIS di atas</div>
+      <div style="font-size:13px;color:var(--muted);">Buka GoPay / OVO / Dana / m-Banking, lalu scan QR.</div>
     </div>`;
   } else {
     html += `<div class="bank-account">
