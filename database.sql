@@ -7,6 +7,23 @@
 CREATE DATABASE IF NOT EXISTS apik_kost CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE apik_kost;
 
+-- ── Tabel settings ───────────────────────────────
+CREATE TABLE IF NOT EXISTS settings (
+  setting_key   VARCHAR(100) PRIMARY KEY,
+  setting_value TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ── Seed: Default payment settings ────────────────
+INSERT IGNORE INTO settings (setting_key, setting_value) VALUES
+('bca_number',    '1234567890'),
+('bca_holder',    'Apik Singgah Sini'),
+('bni_number',    '9876543210'),
+('bni_holder',    'Apik Singgah Sini'),
+('mandiri_number','1122334455'),
+('mandiri_holder','Apik Singgah Sini'),
+('qris_holder',   'Apik Singgah Sini'),
+('qris_image',    'assets/images/payments/qr-qris.png');
+
 -- ── Tabel users ──────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
   id         INT AUTO_INCREMENT PRIMARY KEY,

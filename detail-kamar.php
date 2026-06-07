@@ -14,6 +14,25 @@ $stmt->execute([$id]);
 $room = $stmt->fetch();
 if (!$room) { header('Location: kamar.php'); exit; }
 
+// Ambil setting pembayaran
+$dbSettings = [];
+try {
+    $stmtS = $db->query('SELECT setting_key, setting_value FROM settings');
+    foreach ($stmtS->fetchAll() as $row) {
+        $dbSettings[$row['setting_key']] = $row['setting_value'];
+    }
+} catch (Exception $e) {
+    // tabel settings belum ada
+}
+
+$payAccountsJS = [
+    'bca'     => ['bank'=>'BCA',     'number'=>$dbSettings['bca_number'] ?? '-',     'holder'=>$dbSettings['bca_holder'] ?? '-',     'icon'=>'🏦'],
+    'bni'     => ['bank'=>'BNI',     'number'=>$dbSettings['bni_number'] ?? '-',     'holder'=>$dbSettings['bni_holder'] ?? '-',     'icon'=>'🏛️'],
+    'mandiri' => ['bank'=>'Mandiri', 'number'=>$dbSettings['mandiri_number'] ?? '-', 'holder'=>$dbSettings['mandiri_holder'] ?? '-', 'icon'=>'🔵'],
+    'qris'    => ['bank'=>'QRIS',    'number'=>null,                                  'holder'=>$dbSettings['qris_holder'] ?? '-',     'icon'=>'📱'],
+    'qris_image' => $dbSettings['qris_image'] ?? 'assets/images/payments/qr-qris.png',
+];
+
 // Fasilitas
 $facKamar  = parseFacility($room['fasilitas_kamar']);
 $facKM     = parseFacility($room['fasilitas_kamar_mandi']);
@@ -372,12 +391,7 @@ let step = 1;
 let selectedPay = 'bca';
 let fileUploaded = false;
 
-const payAccounts = {
-  bca:     { bank:'BCA',     number:'1234567890', holder:'Apik Singgah Sini', icon:'🏦' },
-  bni:     { bank:'BNI',     number:'9876543210', holder:'Apik Singgah Sini', icon:'🏛️' },
-  mandiri: { bank:'Mandiri', number:'1122334455', holder:'Apik Singgah Sini', icon:'🔵' },
-  qris:    { bank:'QRIS',    number:null,         holder:'Apik Singgah Sini', icon:'📱' },
-};
+const payAccounts = <?= json_encode($payAccountsJS, JSON_UNESCAPED_UNICODE) ?>;
 
 function formatRp(n) {
   return 'Rp ' + n.toLocaleString('id-ID');
@@ -411,8 +425,9 @@ function renderPaymentInstructions() {
     <div class="payment-detail-title">${acc.icon} Instruksi Transfer ${acc.bank}</div>`;
 
   if (selectedPay === 'qris') {
+    const qrisSrc = payAccounts.qris_image || 'assets/images/payments/qr-qris.png';
     html += `<div style="text-align:center;padding:16px;">
-      <img src="assets/images/payments/qr-qris.png" alt="QRIS"
+      <img src="${qrisSrc}" alt="QRIS"
            style="max-width:220px;border-radius:12px;margin-bottom:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);"
            onerror="this.style.display='none'">
       <div style="font-weight:600;margin-bottom:4px;">Scan QRIS di atas</div>
@@ -486,17 +501,7 @@ function prevStep() {
 }
 
 function resetUploadState() {
-  fileUploaded = false;
-  const input = document.getElementById('proofInput');
-  if (input) input.value = '';
-  const label = document.getElementById('proofLabel');
-  if (label) label.textContent = 'Klik untuk upload foto bukti transfer';
-  const preview = document.getElementById('uploadedPreview');
-  if (preview) preview.innerHTML = '';
-  const error = document.getElementById('proofError');
-  if (error) error.style.display = 'none';
-  const btn = document.getElementById('btnSubmit');
-  if (btn) btn.disabled = true;
+  removeProof();
 }
 
 function openBookingModal() {
@@ -515,6 +520,20 @@ function closeModal() {
   renderStep(1);
 }
 
+function removeProof() {
+  fileUploaded = false;
+  var inp = document.getElementById('proofInput');
+  if (inp) inp.value = '';
+  var lbl = document.getElementById('proofLabel');
+  if (lbl) lbl.textContent = 'Klik untuk upload foto bukti transfer';
+  var prv = document.getElementById('uploadedPreview');
+  if (prv) prv.innerHTML = '';
+  var btn = document.getElementById('btnSubmit');
+  if (btn) btn.disabled = true;
+  var err = document.getElementById('proofError');
+  if (err) err.style.display = 'none';
+}
+
 function previewProof(e) {
   const file = e.target.files[0];
   if (!file) return;
@@ -525,7 +544,11 @@ function previewProof(e) {
   const reader = new FileReader();
   reader.onload = ev => {
     document.getElementById('uploadedPreview').innerHTML =
-      '<img src="'+ev.target.result+'" style="max-width:100%;border-radius:8px;max-height:160px;margin-top:8px;">';
+      '<div style="position:relative;display:inline-block;margin-top:8px;">' +
+      '<img src="'+ev.target.result+'" style="max-width:100%;border-radius:8px;max-height:160px;object-fit:contain;">' +
+      '<button type="button" onclick="removeProof()" style="position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:none;background:rgba(220,38,38,0.9);color:white;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.2);">✕</button>' +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--danger);margin-top:4px;cursor:pointer;" onclick="removeProof()">Hapus file</div>';
   };
   reader.readAsDataURL(file);
 }

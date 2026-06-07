@@ -28,7 +28,10 @@
 }
 
 body {
-  background: var(--bg);
+  background:
+    linear-gradient(rgba(245, 243, 255, 0.88), rgba(245, 243, 255, 0.88)),
+    url('../images/bg-kosan.jpg') center/cover no-repeat fixed;
+  background-color: var(--bg);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   line-height: 1.65;

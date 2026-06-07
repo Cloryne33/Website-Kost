@@ -23,6 +23,7 @@ $base   = $base   ?? '';
       <?php if ($user): ?>
         <?php if ($user['role'] === 'admin'): ?>
           <a href="<?= $base ?>admin/dashboard.php" <?= $active==='admin'?'class="nav-active"':'' ?>>Dashboard</a>
+          <a href="<?= $base ?>admin/settings.php">Pengaturan</a>
         <?php endif; ?>
         <span class="nav-user">Halo, <strong><?= e($user['name']) ?></strong></span>
         <a href="<?= $base ?>logout.php">Logout</a>
