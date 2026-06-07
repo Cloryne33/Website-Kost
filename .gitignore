@@ -1,0 +1,8 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Temp files
+_genimg.php
+_check*.php
+_fonttest.jpg
