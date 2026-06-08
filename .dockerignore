@@ -1,0 +1,10 @@
+.git
+.gitignore
+database.sql
+README.md
+.dockerignore
+Dockerfile
+.vscode
+.idea
+*.log
+node_modules

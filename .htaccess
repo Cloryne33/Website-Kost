@@ -3,8 +3,7 @@ DirectoryIndex index.php
 
 # Blok akses langsung ke folder includes
 <FilesMatch "^(config|navbar|footer)\.php$">
-  Order Allow,Deny
-  Deny from all
+  Require all denied
 </FilesMatch>
 
 # Security headers
