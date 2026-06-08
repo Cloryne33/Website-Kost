@@ -1,9 +1,9 @@
 <?php
 // ── Konfigurasi Database ──────────────────────────
 // Sesuaikan dengan setting server kamu
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'apik_kost');
-define('DB_USER', 'root');       // ganti dengan username MySQL kamu
+define('DB_HOST', 'sql301.infinityfree.com');
+define('DB_NAME', 'if0_42131467_apik_kost');
+define('DB_USER', 'if0_42131467');       // ganti dengan username MySQL kamu
 define('DB_PASS', '');           // ganti dengan password MySQL kamu
 define('DB_CHARSET', 'utf8mb4');
 

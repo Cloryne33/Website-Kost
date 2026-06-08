@@ -68,6 +68,7 @@ $qrisImage = $settings['qris_image'] ?? 'assets/images/payments/qr-qris.png';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pengaturan Pembayaran - <?= SITE_NAME ?></title>
+  <link rel="icon" type="image/png" href="../assets/images/logo-apik.png">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     .settings-section { max-width:700px; margin:0 auto; }

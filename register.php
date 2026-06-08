@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
-    $ins  = $db->prepare('INSERT INTO users (name,email,phone,password,role) VALUES (?,?,?,?,?)');
-    $ins->execute([$name, $email, $phone, $hash, 'user']);
+    $ins  = $db->prepare('INSERT INTO users (name,email,phone,password,role,auth_provider) VALUES (?,?,?,?,?,?)');
+    $ins->execute([$name, $email, $phone, $hash, 'user', 'email']);
     $_SESSION['flash'] = ['type'=>'success','msg'=>'Registrasi berhasil! Silakan login.'];
     header('Location: login.php');
     exit;
@@ -47,6 +47,7 @@ $active = 'register';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register - <?= SITE_NAME ?></title>
+  <link rel="icon" type="image/png" href="assets/images/logo-apik.png">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>

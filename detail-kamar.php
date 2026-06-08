@@ -133,6 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kamar <?= e($room['nomor']) ?> - <?= SITE_NAME ?></title>
+  <link rel="icon" type="image/png" href="assets/images/logo-apik.png">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>

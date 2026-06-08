@@ -62,6 +62,7 @@ $payLabel = ['bca'=>'Transfer BCA','bni'=>'Transfer BNI','mandiri'=>'Transfer Ma
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Admin - <?= SITE_NAME ?></title>
+  <link rel="icon" type="image/png" href="../assets/images/logo-apik.png">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     .tab-bar { display:flex; gap:6px; margin-bottom:24px; border-bottom:2px solid var(--border); padding-bottom:0; }
