@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
-    $ins  = $db->prepare('INSERT INTO users (name,email,phone,password,role,auth_provider) VALUES (?,?,?,?,?,?)');
-    $ins->execute([$name, $email, $phone, $hash, 'user', 'email']);
+    $ins  = $db->prepare('INSERT INTO users (name,email,phone,password,role) VALUES (?,?,?,?,?)');
+    $ins->execute([$name, $email, $phone, $hash, 'user']);
     $_SESSION['flash'] = ['type'=>'success','msg'=>'Registrasi berhasil! Silakan login.'];
     header('Location: login.php');
     exit;

@@ -351,27 +351,6 @@ nav a.nav-active { color:var(--purple); background:var(--purple-light); font-wei
 
 hr { margin: 24px 0; border: none; border-top: 1px solid var(--border); }
 
-.or-divider {
-  display: flex; align-items: center; gap: 12px;
-  margin: 20px 0; color: var(--muted); font-size: 13px;
-}
-.or-divider::before,
-.or-divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
-}
-.or-divider span { white-space: nowrap; }
-
-.btn-google {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 11px 20px; border: 1.5px solid var(--border);
-  border-radius: 9px; background: white; color: var(--text);
-  font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
-  cursor: pointer; text-decoration: none;
-  transition: background .2s, border-color .2s;
-}
-.btn-google:hover {
-  background: #f8f9fa; border-color: #dadce0;
-}
 
 /* ─── USER INFO BOX ──────────────────────────────── */
 .user-info-box {

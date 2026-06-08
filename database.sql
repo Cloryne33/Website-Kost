@@ -27,16 +27,13 @@ INSERT IGNORE INTO settings (setting_key, setting_value) VALUES
 
 -- ── Tabel users ──────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
-  id            INT AUTO_INCREMENT PRIMARY KEY,
-  name          VARCHAR(100) NOT NULL,
-  email         VARCHAR(150) NOT NULL UNIQUE,
-  google_id     VARCHAR(255) NULL UNIQUE,
-  avatar        VARCHAR(500) NULL,
-  phone         VARCHAR(20)  NOT NULL,
-  password      VARCHAR(255) NOT NULL,
-  role          ENUM('admin','user') DEFAULT 'user',
-  auth_provider ENUM('email','google') DEFAULT 'email',
-  created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  id         INT AUTO_INCREMENT PRIMARY KEY,
+  name       VARCHAR(100) NOT NULL,
+  email      VARCHAR(150) NOT NULL UNIQUE,
+  phone      VARCHAR(20)  NOT NULL,
+  password   VARCHAR(255) NOT NULL,
+  role       ENUM('admin','user') DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 -- ── Tabel rooms ──────────────────────────────────
@@ -75,8 +72,7 @@ CREATE TABLE IF NOT EXISTS bookings (
   FOREIGN KEY (room_id) REFERENCES rooms(id)
 ) ENGINE=InnoDB;
 
--- Jika tabel sudah ada (database lama), jalankan file database-migration.sql
--- atau jalankan query ini sekali di phpMyAdmin:
+-- Jika tabel sudah ada (database lama), jalankan query ini sekali di phpMyAdmin:
 -- ALTER TABLE bookings ADD COLUMN bukti_bayar VARCHAR(255) DEFAULT NULL AFTER note;
 
 -- ── Seed: Admin default ───────────────────────────
