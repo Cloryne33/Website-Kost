@@ -1,11 +1,10 @@
 <?php
 // ── Konfigurasi Database ──────────────────────────
-// Digunakan oleh Railway (via env var) atau fallback ke local dev
-define('DB_HOST', getenv('MYSQLHOST') ?: 'localhost');
-define('DB_NAME', getenv('MYSQLDATABASE') ?: 'apik_kost');
-define('DB_USER', getenv('MYSQLUSER') ?: 'root');
-define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
-define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
+// Sesuaikan dengan setting server kamu
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'apik_kost');
+define('DB_USER', 'root');       // ganti dengan username MySQL kamu
+define('DB_PASS', '');           // ganti dengan password MySQL kamu
 define('DB_CHARSET', 'utf8mb4');
 
 define('SITE_NAME', 'Apik Singgah Sini');
@@ -35,7 +34,7 @@ function getWAUrl(): string {
 function getDB(): PDO {
     static $pdo = null;
     if ($pdo === null) {
-        $dsn = 'mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME.';charset='.DB_CHARSET;
+        $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET;
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
