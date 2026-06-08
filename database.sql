@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS bookings (
 
 -- ── Seed: Admin default ───────────────────────────
 INSERT IGNORE INTO users (name, email, phone, password, role)
-VALUES ('Admin Kost', 'admin@kost.com', '6281234567890',
+VALUES ('Admin Kost', 'admin@kost.com', '628971022255',
         '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
 -- password: password
 

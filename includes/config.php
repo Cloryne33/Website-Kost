@@ -11,7 +11,7 @@ define('SITE_NAME', 'Apik Singgah Sini');
 define('SITE_URL',  '');         // kosongkan jika di root, atau isi: '/apik-kost'
 
 // ── Service Center ──────────────────────────
-define('WA_NUMBER', '6281234567890');  // ganti dengan nomor WA admin
+define('WA_NUMBER', '628971022255');  // ganti dengan nomor WA admin
 define('WA_URL',    'https://wa.me/' . WA_NUMBER);
 
 // ── Koneksi PDO ───────────────────────────────────
