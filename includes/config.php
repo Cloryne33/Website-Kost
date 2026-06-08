@@ -11,8 +11,24 @@ define('SITE_NAME', 'Apik Singgah Sini');
 define('SITE_URL',  '');         // kosongkan jika di root, atau isi: '/apik-kost'
 
 // ── Service Center ──────────────────────────
-define('WA_NUMBER', '628971022255');  // ganti dengan nomor WA admin
-define('WA_URL',    'https://wa.me/' . WA_NUMBER);
+function getWANumber(): string {
+    static $number = null;
+    if ($number === null) {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare('SELECT setting_value FROM settings WHERE setting_key = ?');
+            $stmt->execute(['wa_number']);
+            $number = $stmt->fetchColumn();
+        } catch (Exception $e) {
+            // fallback
+        }
+        if (!$number) $number = '6281234567890';
+    }
+    return $number;
+}
+function getWAUrl(): string {
+    return 'https://wa.me/' . getWANumber();
+}
 
 // ── Koneksi PDO ───────────────────────────────────
 function getDB(): PDO {

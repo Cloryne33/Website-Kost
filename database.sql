@@ -22,7 +22,8 @@ INSERT IGNORE INTO settings (setting_key, setting_value) VALUES
 ('mandiri_number','1122334455'),
 ('mandiri_holder','Apik Singgah Sini'),
 ('qris_holder',   'Apik Singgah Sini'),
-('qris_image',    'assets/images/payments/qr-qris.png');
+('qris_image',    'assets/images/payments/qr-qris.png'),
+('wa_number',     '628971022255');
 
 -- ── Tabel users ──────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (

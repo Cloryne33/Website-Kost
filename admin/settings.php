@@ -12,7 +12,7 @@ $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $keys = ['bca_number','bca_holder','bni_number','bni_holder',
-             'mandiri_number','mandiri_holder','qris_holder'];
+             'mandiri_number','mandiri_holder','qris_holder','wa_number'];
 
     $stmt = $db->prepare('INSERT INTO settings (setting_key, setting_value)
                           VALUES (?, ?)
@@ -98,8 +98,8 @@ $qrisImage = $settings['qris_image'] ?? 'assets/images/payments/qr-qris.png';
 
 <main class="container section">
   <div class="settings-section">
-    <h2>Pengaturan Pembayaran</h2>
-    <p class="text-muted">Edit nomor rekening, nama pemilik, dan gambar QRIS dari sini.</p>
+    <h2>Pengaturan Pembayaran &amp; Service Center</h2>
+    <p class="text-muted">Edit nomor rekening, nama pemilik, gambar QRIS, dan nomor WhatsApp Service Center dari sini.</p>
 
     <?php if ($msg): ?>
       <div class="msg-success"><?= e($msg) ?></div>
@@ -174,6 +174,19 @@ $qrisImage = $settings['qris_image'] ?? 'assets/images/payments/qr-qris.png';
           <input type="file" name="qris_image" accept="image/png,image/jpeg,image/jpg,image/webp"
                  style="margin-top:8px;">
           <div style="font-size:12px;color:var(--muted);margin-top:4px;">Kosongkan jika tidak ingin mengganti gambar QRIS.</div>
+        </div>
+      </div>
+
+      <!-- ── Service Center ── -->
+      <div class="settings-card">
+        <h3>💬 Service Center WhatsApp</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nomor WhatsApp</label>
+            <input type="text" name="wa_number" value="<?= e($settings['wa_number'] ?? '') ?>" required
+                   placeholder="6285212345678">
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">Gunakan format internasional tanpa + dan spasi. Contoh: 6285212345678</div>
+          </div>
         </div>
       </div>
 

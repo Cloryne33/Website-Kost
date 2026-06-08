@@ -361,7 +361,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
           <div>
             <div class="wa-box-title">Punya pertanyaan?</div>
             <div class="wa-box-text">Hubungi <strong>Service Center</strong> kami jika ada kendala pembayaran.</div>
-            <a href="<?= WA_URL ?>?text=Halo%20saya%20ingin%20bertanya%20tentang%20booking" target="_blank" class="btn-whatsapp" style="margin-top:8px;">
+            <a href="<?= getWAUrl() ?>?text=Halo%20saya%20ingin%20bertanya%20tentang%20booking" target="_blank" class="btn-whatsapp" style="margin-top:8px;">
               Hubungi WhatsApp →
             </a>
           </div>
