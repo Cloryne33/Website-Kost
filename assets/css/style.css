@@ -50,7 +50,7 @@ body {
   padding: 14px 0;
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 100;
   backdrop-filter: blur(10px);
 }
 
@@ -960,39 +960,19 @@ hr { margin: 24px 0; border: none; border-top: 1px solid var(--border); }
 
 /* ─── RESPONSIVE ─────────────────────────────────── */
 
-/* ── Nav backdrop overlay ── */
-.nav-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 199;
-  opacity: 0;
-  transition: opacity .3s ease;
-}
-.nav-backdrop.active {
-  display: block;
-  opacity: 1;
-}
-
-body.nav-open {
-  overflow: hidden;
-}
-
 /* Tablet & below */
 @media (max-width: 768px) {
   /* ── Navbar hamburger ── */
-  .nav-toggle { display: flex; z-index: 201; }
+  .nav-toggle { display: flex; }
 
   #navMenu {
-    position: fixed; top: 0; right: -300px;
-    width: 280px; height: 100vh;
+    position: fixed; top: 0; right: -280px;
+    width: 260px; height: 100vh;
     background: white; flex-direction: column;
     padding: 80px 24px 24px; gap: 6px;
-    box-shadow: -4px 0 24px rgba(0,0,0,0.18);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.12);
     transition: right .3s ease;
-    z-index: 200; align-items: stretch;
-    overflow-y: auto;
+    z-index: 100; align-items: stretch;
   }
 
   #navMenu.nav-open { right: 0; }
